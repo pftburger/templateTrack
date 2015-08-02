@@ -1,6 +1,17 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxOpenCv.h"
+#include "ofxGui.h"
+
+struct Marker
+{
+		ofxCvGrayscaleImage templateImage;
+		IplImage* resultImage;
+		double minVal, maxVal;
+		CvPoint minLoc, maxLoc;
+
+};
 
 class ofApp : public ofBaseApp{
 
@@ -18,5 +29,22 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		
+		void loadImagesButtonPressed();
+
+		ofVideoGrabber 		vidGrabber;
+
+		vector<ofxCvGrayscaleImage> templates;
+		vector<IplImage*> results;
+		vector<Marker>	markers;
+
+		
+		ofxCvColorImage			colorImg;
+		ofxCvGrayscaleImage 	grayImg;
+
+		
+		ofxButton loadImages;
+
 		
 };
